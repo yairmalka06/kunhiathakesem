@@ -113,7 +113,8 @@ bot.on("message", function(message){
                 break;
             
         }
-    
+    defult :
+    message.channel.sendmessage("invaild command !");
     });
 
 bot.login(TOKEN);
