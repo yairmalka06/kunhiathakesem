@@ -3,7 +3,7 @@ const YTDL = require("ytdl-core");
 
 
 
-const TOKEN = "NDI5OTkyODAwMTc2ODMyNTEy.DaJthg.CO37zn5MG9lTX-aFoOPmSIHXB5M";
+const TOKEN = "";
 const PREFIX = "!";
 
 var fortunes = [
