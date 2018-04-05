@@ -113,8 +113,7 @@ bot.on("message", function(message){
                 break;
             
         }
-    defult :
-    message.channel.sendmessage("invaild command !");
-    });
+                default:
+                    message.channel.sendMessage("Invalid command!");
 
 bot.login(TOKEN);
