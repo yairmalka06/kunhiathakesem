@@ -111,9 +111,7 @@ bot.on("message", function(message){
                     message.channel.sendMessage("BandIT - יוצר הבוט");
                        message.channel.send("", {files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
                 break;
-           
-                default:
-                    message.channel.sendMessage("Invalid command!");
+            
         }
     
     });
