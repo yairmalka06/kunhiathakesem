@@ -3,7 +3,6 @@ const YTDL = require("ytdl-core");
 
 
 
-const TOKEN = "";
 const PREFIX = "!";
 
 var fortunes = [
@@ -115,4 +114,4 @@ bot.on("message", function(message){
     
     });
 
-bot.login(TOKEN);
+bot.login(process.env.TOKEN);
