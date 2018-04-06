@@ -4,7 +4,7 @@ const YTDL = require("ytdl-core");
 
 const PREFIX = "!";
 
-var fortunes1 = [
+var fortunes = [
     "https://www.youtube.com/watch?v=LrURBQtrBvs",
     "https://www.youtube.com/watch?v=zK-5vBFiAuc",
     "https://www.youtube.com/watch?v=RomNAn570Tc",
