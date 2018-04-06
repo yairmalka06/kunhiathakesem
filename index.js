@@ -120,10 +120,7 @@ bot.on("ready", function(){
                     message.channel.sendMessage("Bot creator - BandIT");
                        message.channel.send("", {files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
                 break;
-           
-                default:
-                    message.channel.sendMessage("The command is invalid.");
-                
+                          
         }
     
             return;
