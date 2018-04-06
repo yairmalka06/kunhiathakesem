@@ -109,7 +109,7 @@ bot.on("ready", function(){
                 };
                 var server = servers[message.guild.id];
                 
-                server.queue.push("https://www.youtube.com/watch?v=uIe8u6FhRuo&feature=youtu.be");
+                server.queue.push("https://www.youtube.com/watch?v=lw35HITLO14");
                 
                 if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
                     play(connection, message);                             
