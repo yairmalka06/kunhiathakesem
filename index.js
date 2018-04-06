@@ -2,16 +2,20 @@ const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
 
 
-
 const PREFIX = "!";
 
-var fortunes = [
-    "https://www.youtube.com/watch?v=RJs0FGj7Jc8&feature=youtu.be",
-    "https://www.youtube.com/watch?v=wloynNXMnMk&feature=youtu.be",
-    "https://www.youtube.com/watch?v=0vQUXFMVT3Y&feature=youtu.be",
-    "https://www.youtube.com/watch?v=7mECAFJghos&feature=youtu.be",
-    "https://www.youtube.com/watch?v=e6STRTGx6Ew&feature=youtu.be"
+var fortunes1 = [
+    "https://www.youtube.com/watch?v=LrURBQtrBvs",
+    "https://www.youtube.com/watch?v=zK-5vBFiAuc",
+    "https://www.youtube.com/watch?v=RomNAn570Tc",
+    "https://www.youtube.com/watch?v=sjQRZWzSLZU",
+    "https://www.youtube.com/watch?v=u02SH-Re3ik"
 ];
+
+
+
+
+
 
 var bot = new Discord.Client();
 
@@ -31,37 +35,44 @@ function play(connection, message){
 }
 
 
-
 var servers = {};
 
 bot.on("ready", function(){
     console.log("Ready");
+    bot.user.setGame("Magic Shell...");
     console.log(process.env.TOKEN);
 });
 
-bot.on("message", function(message){
+
+    
+
+ bot.on("message", function(message){
+    
      if(message.author.equals(bot.user)) return;
     
     if(!message.content.startsWith(PREFIX)) return;
     
         var args = message.content.substring(PREFIX.length).split(" ");
     
+       
+            
+    
         switch (args[0].toLowerCase()){
-                case "קונכיה":
-                        if(args[1] == "שרמוטה"){
-                            message.channel.sendMessage("?סליחה");
+                case "Shell":
+                        if(args[1] == "Bitch"){
+                            message.channel.sendMessage("Sorry?");
                             break;
                         }
-                        if(args[2] == "שרמוטה"){
-                            message.channel.sendMessage("?סליחה");
+                        if(args[2] == "Bitch"){
+                            message.channel.sendMessage("Sorry?");
                             break;
                         }
-                            if(args[3] == "שרמוטה"){
-                            message.channel.sendMessage("?סליחה");
+                            if(args[3] == "Bitch"){
+                            message.channel.sendMessage("Sorry?");
                             break;
                         }
-                        if(args[4] == "שרמוטה"){
-                            message.channel.sendMessage("?סליחה");
+                        if(args[4] == "Bitch"){
+                            message.channel.sendMessage("Sorry?");
                             break;
                         }
                         var server = servers[message.guild.id];
@@ -78,17 +89,18 @@ bot.on("message", function(message){
                             if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
                                 play(connection, message);                             
                             });
-                          //  message.channel.sendMessage(fortunes[Math.floor(Math.random() * fortunes.length)]);
                         } else {
-                          message.channel.sendMessage(".תנסה לשאול שוב");          
+                          message.channel.sendMessage("Try to ask again.");          
                 
                         }
                 
                 break;
-                  case "התחל":
+                  case "start":
 
                 if(!message.member.voiceChannel){
-                     message.channel.sendMessage("אתה חייב להיות בתוך צא'ט כדאי לדבר עם קונכית הקסם");
+                     message.channel.sendMessage("You need to be in voice channel to talk with the Magic Shell!");
+
+
                     return;
                 }
                 
@@ -103,16 +115,21 @@ bot.on("message", function(message){
                     play(connection, message);                             
                 });
                 break;
-            case "ssdjglksdgnlsdomvsdkvsdipsgosdg":
-          
-                break;
-            case "קרדיטים":
-                    message.channel.sendMessage("SkyDive - יוצר הבוט");
-                    message.channel.sendMessage("BandIT - יוצר הבוט");
+            case "Credits":
+                    message.channel.sendMessage("Bot creator - SkyDive");
+                    message.channel.sendMessage("Bot creator - BandIT");
                        message.channel.send("", {files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
                 break;
+           
+                default:
+                    message.channel.sendMessage("The command is invalid.");
+                
         }
     
+            return;
     });
+    
+
+    
 
 bot.login(process.env.TOKEN);
