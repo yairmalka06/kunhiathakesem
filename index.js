@@ -58,7 +58,7 @@ bot.on("ready", function(){
             
     
         switch (args[0].toLowerCase()){
-                case "Shell":
+                case "shell":
                         if(args[1] == "Bitch"){
                             message.channel.sendMessage("Sorry?");
                             break;
@@ -115,7 +115,7 @@ bot.on("ready", function(){
                     play(connection, message);                             
                 });
                 break;
-            case "Credits":
+            case "credits":
                     message.channel.sendMessage("Bot creator - SkyDive");
                     message.channel.sendMessage("Bot creator - BandIT");
                        message.channel.send("", {files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
