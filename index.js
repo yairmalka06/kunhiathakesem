@@ -36,6 +36,7 @@ var servers = {};
 
 bot.on("ready", function(){
     console.log("Ready");
+    console.log(process.env.TOKEN);
 });
 
 bot.on("message", function(message){
