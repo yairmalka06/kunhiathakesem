@@ -40,7 +40,6 @@ var servers = {};
 bot.on("ready", function(){
     console.log("Ready");
     bot.user.setGame("Magic Shell...");
-    console.log(process.env.TOKEN);
 });
 
 
