@@ -21,7 +21,7 @@ var bot = new Discord.Client();
 const dbl = new DBL(process.env.topgg, bot);
 
 dbl.on('posted', () => {
-  console.log('Server count posted!');
+  console.log('Server count posted');
 })
 
 dbl.on('error', e => {
