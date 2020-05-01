@@ -45,14 +45,14 @@ var servers = {};
 
 bot.on("ready", function(){
     console.log("Ready");
-    bot.user.setActivity(`!shell | ${bot.guilds.size} Servers!`);
+    bot.user.setActivity(`!shell | ${bot.guilds.cache.size} Servers!`);
 });
 
 bot.on("guildCreate",function(){
-    bot.user.setActivity(`!shell | ${bot.guilds.size} Servers!`);
+    bot.user.setActivity(`!shell | ${bot.guilds.cache.size} Servers!`);
 })
 bot.on("guildDelete",function(){
-    bot.user.setActivity(`!shell | ${bot.guilds.size} Servers!`);
+    bot.user.setActivity(`!shell | ${bot.guilds.cache.size} Servers!`);
 })
 
  bot.on("message", function(message){
