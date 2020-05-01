@@ -68,7 +68,7 @@ bot.on("guildDelete",function(){
 
     switch (args[0].toLowerCase()){
                 case "shell":
-                    if(!message.member.voice.channel){
+                    if(!message.member.voice){
                         message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
                        return;
                    }
@@ -80,7 +80,7 @@ bot.on("guildDelete",function(){
 
                         server.queue.push(fortunes[Math.floor(Math.random() * fortunes.length)]);
 
-                        if(!message.guild.voice.connection) message.member.voice.channel.join().then(function(connection){
+                        if(!message.guild.voice) message.member.voice.channel.join().then(function(connection){
                             play(connection, message);                             
                         });
                     } else {
@@ -88,7 +88,7 @@ bot.on("guildDelete",function(){
                     }
                 break;
             case "start":
-                if(!message.member.voice.channel){
+                if(!message.member.voice){
                      message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
                     return;
                 }
@@ -100,7 +100,7 @@ bot.on("guildDelete",function(){
                 
                 server.queue.push("https://www.youtube.com/watch?v=lw35HITLO14");
                 
-                if(!message.guild.voice.connection) message.member.voice.channel.join().then(function(connection){
+                if(!message.guild.voice) message.member.voice.channel.join().then(function(connection){
                     play(connection, message);                             
                 });
             break;
