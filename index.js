@@ -100,7 +100,7 @@ bot.on("guildDelete",function(){
                 
                 server.queue.push("https://www.youtube.com/watch?v=lw35HITLO14");
                 
-                if(!message.guild.voice) message.member.voice.channel.join().then(function(connection){
+                message.member.voice.channel.join().then(function(connection){
                     play(connection, message);                             
                 });
             break;
