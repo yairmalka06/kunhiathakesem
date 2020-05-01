@@ -34,7 +34,7 @@ function play(connection, message){
     
     server.queue.shift();
     
-    server.dispatcher.on("end", function(){
+    server.dispatcher.on("finish", function(){
         if(server.queue[0]) play(connection, message);
         else connection.disconnect();
     });
@@ -56,59 +56,40 @@ bot.on("guildDelete",function(){
 })
 
  bot.on("message", function(message){
-    
-     if(message.author.equals(bot.user)) return;
-    
+    if(message.author.bot) return;
+
+    if(message.guild == null || message.channel.type == "dm") return;
+
+    if(message.author.equals(bot.user)) return;
+
     if(!message.content.startsWith(PREFIX)) return;
     
-        var args = message.content.substring(PREFIX.length).split(" ");
-    
-       
-            
-    
-        switch (args[0].toLowerCase()){
+    var args = message.content.substring(PREFIX.length).split(" ");
+
+    switch (args[0].toLowerCase()){
                 case "shell":
-                        if(args[1] == "Bitch"){
-                            message.channel.sendMessage("Sorry?");
-                            break;
-                        }
-                        if(args[2] == "Bitch"){
-                            message.channel.sendMessage("Sorry?");
-                            break;
-                        }
-                            if(args[3] == "Bitch"){
-                            message.channel.sendMessage("Sorry?");
-                            break;
-                        }
-                        if(args[4] == "Bitch"){
-                            message.channel.sendMessage("Sorry?");
-                            break;
-                        }
+                    if(!message.member.voice.channel){
+                        message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
+                       return;
+                   }
+                    if(args[1]){
+                        if(!servers[message.guild.id]) servers[message.guild.id] = {
+                            queue: []
+                        };
                         var server = servers[message.guild.id];
-                    
-                
-                        if(args[1]){
-                             if(!servers[message.guild.id])  servers[message.guild.id] = {
-                                 queue: []
-                             };
-                            var server = servers[message.guild.id];
-                
-                             server.queue.push(fortunes[Math.floor(Math.random() * fortunes.length)]);
-                
-                            if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
-                                play(connection, message);                             
-                            });
-                        } else {
-                          message.channel.sendMessage("Try to ask again.");          
-                
-                        }
-                
+
+                        server.queue.push(fortunes[Math.floor(Math.random() * fortunes.length)]);
+
+                        if(!message.guild.voice.connection) message.member.voice.channel.join().then(function(connection){
+                            play(connection, message);                             
+                        });
+                    } else {
+                        message.channel.send("Try to ask again.");          
+                    }
                 break;
             case "start":
-                if(!message.member.voiceChannel){
-                     message.channel.sendMessage("You need to be in voice channel to talk with the Magic Shell!");
-
-
+                if(!message.member.voice.channel){
+                     message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
                     return;
                 }
                 
@@ -119,17 +100,15 @@ bot.on("guildDelete",function(){
                 
                 server.queue.push("https://www.youtube.com/watch?v=lw35HITLO14");
                 
-                if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
+                if(!message.guild.voice.connection) message.member.voice.channel.join().then(function(connection){
                     play(connection, message);                             
                 });
             break;
             case "credits":
-                    message.channel.sendMessage("Bot creators - Byoe And idan",{files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
-            break;
-                          
-        }
-    
-            return;
+                    message.channel.send("Bot creators - Byoe And idan",{files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
+            break;        
+    }
+        return;
     });
     
 
