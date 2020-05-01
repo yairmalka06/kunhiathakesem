@@ -1,9 +1,8 @@
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
-
-
+const 
 const PREFIX = "!";
-
+const DBL = require("dblapi.js");
 var fortunes = [
     "https://www.youtube.com/watch?v=LrURBQtrBvs",
     "https://www.youtube.com/watch?v=zK-5vBFiAuc",
@@ -19,7 +18,15 @@ var fortunes = [
 
 var bot = new Discord.Client();
 
+const dbl = new DBL(process.env.topgg, bot);
 
+dbl.on('posted', () => {
+  console.log('Server count posted!');
+})
+
+dbl.on('error', e => {
+ console.log(`Oops! ${e}`);
+})
 
 function play(connection, message){
     var server = servers[message.guild.id];
@@ -39,11 +46,15 @@ var servers = {};
 
 bot.on("ready", function(){
     console.log("Ready");
-    bot.user.setGame("Magic Shell...");
+    bot.user.setActivity(`!shell | ${bot.guilds.size} Servers!`);
 });
 
-
-    
+bot.on("guildCreate",function(){
+    bot.user.setActivity(`!shell | ${bot.guilds.size} Servers!`);
+})
+bot.on("guildDelete",function(){
+    bot.user.setActivity(`!shell | ${bot.guilds.size} Servers!`);
+})
 
  bot.on("message", function(message){
     
@@ -94,8 +105,7 @@ bot.on("ready", function(){
                         }
                 
                 break;
-                  case "start":
-
+            case "start":
                 if(!message.member.voiceChannel){
                      message.channel.sendMessage("You need to be in voice channel to talk with the Magic Shell!");
 
@@ -103,7 +113,7 @@ bot.on("ready", function(){
                     return;
                 }
                 
-                if(!servers[message.guild.id])  servers[message.guild.id] = {
+                if(!servers[message.guild.id]) servers[message.guild.id] = {
                     queue: []
                 };
                 var server = servers[message.guild.id];
@@ -113,12 +123,10 @@ bot.on("ready", function(){
                 if(!message.guild.voiceConnection) message.member.voiceChannel.join().then(function(connection){
                     play(connection, message);                             
                 });
-                break;
+            break;
             case "credits":
-                    message.channel.sendMessage("Bot creator - SkyDive");
-                    message.channel.sendMessage("Bot creator - BandIT");
-                       message.channel.send("", {files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
-                break;
+                    message.channel.sendMessage("Bot creators - Byoe And idan",{files: ["http://i.imgur.com/mxL9ejJ.jpg"]});
+            break;
                           
         }
     
