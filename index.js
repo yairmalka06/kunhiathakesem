@@ -80,7 +80,7 @@ bot.on("guildDelete",function(){
 
                         server.queue.push(fortunes[Math.floor(Math.random() * fortunes.length)]);
 
-                        if(!message.guild.voice) message.member.voice.channel.join().then(function(connection){
+                        message.member.voice.channel.join().then(function(connection){
                             play(connection, message);                             
                         });
                     } else {
