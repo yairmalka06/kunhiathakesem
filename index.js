@@ -1,6 +1,5 @@
 const Discord = require("discord.js");
 const YTDL = require("ytdl-core");
-const 
 const PREFIX = "!";
 const DBL = require("dblapi.js");
 var fortunes = [
