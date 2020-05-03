@@ -80,15 +80,10 @@ bot.on("guildDelete",function(){
                         message.member.voice.channel.join().then(function(connection){
                             play(connection, message);                             
                         });
-                    } else {
-                        message.channel.send("Try to ask again.");          
-                    }
+                    } else message.channel.send("Try to ask again.");
                 break;
             case "start":
-                if(!message.member.voice){
-                     message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
-                    return;
-                }
+                if(!message.member.voice.channel) return message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
                 
                 if(!servers[message.guild.id]) servers[message.guild.id] = {
                     queue: []
