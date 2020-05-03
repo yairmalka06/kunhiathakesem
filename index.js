@@ -68,7 +68,7 @@ bot.on("guildDelete",function(){
 
     switch (args[0].toLowerCase()){
                 case "shell":
-                    if(!message.member.voice.channel) message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
+                    if(!message.member.voice.channel) return message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
                     if(args[1]){
                         if(!servers[message.guild.id]) servers[message.guild.id] = {
                             queue: []
