@@ -30,7 +30,7 @@ dbl.on('error', e => {
 function play(connection, message){
     var server = servers[message.guild.id];
     
-    server.dispatcher = connection.play(YTDL(server.queue[0], {filter: "audioonly"}), { volume: 2 });
+    server.dispatcher = connection.play(YTDL(server.queue[0], {filter: "audioonly"}), { volume: 1.5 });
     
     server.queue.shift();
     
@@ -68,10 +68,7 @@ bot.on("guildDelete",function(){
 
     switch (args[0].toLowerCase()){
                 case "shell":
-                    if(!message.member.voice){
-                        message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
-                       return;
-                   }
+                    if(!message.member.voice.channel) message.channel.send("You need to be in voice channel to talk with the Magic Shell!");
                     if(args[1]){
                         if(!servers[message.guild.id]) servers[message.guild.id] = {
                             queue: []
